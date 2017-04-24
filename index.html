@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+		<script src="sort.js"></script>
+    <title>Ugly Sort</title>
+  </head>
+  <body>
+    
+		<h1>Ugly Sort</h1>
+		<h2>By: Tyler Vifian</h2>
+		
+    <script type="text/javascript">
+      
+      // Better programming, put at top of every javascript
+      "uses strict";
+			
+			// Tells user about the program
+			alert("This program sorts three number in different ways. " + 
+						"When prompted, enter a sorting algorithm and three numbers to sort.");
+      
+			// Asks user for the algorithm
+			var sortAlgorithm = prompt("Enter a sort algorithm (ugly, bubble, quick): ");
+			
+			// Asks user for 3 numbers to sort
+			var num1 = Number(prompt("Enter the first number to sort: "));
+			var num2 = Number(prompt("Enter the second number to sort: "));
+			var num3 = Number(prompt("Enter the third number to sort: "));
+			
+			// Initializes the after sort variables
+			var smallest = 0;
+			var middle = 0;
+			var largest = 0;
+			
+			// If user said ugly sort, do this sorting calculations
+			if (sortAlgorithm === "ugly"){
+				
+				// Begins timer
+				var tUgly0 = performance.now();
+
+				if (num1 < num2 && num1 < num3){
+					smallest = num1;
+					if (num2 < num3){
+					middle = num2;
+					largest = num3;
+					}
+					else{
+						middle = num3;
+						largest = num2;
+					}
+				}
+				else if (num2 < num1 && num2 < num3){
+					smallest = num2;
+					if (num1 < num3){
+						middle = num1;
+						largest = num3;
+					}
+					else{
+						middle = num3;
+						largest = num1;
+					}
+				}
+				else if (num3 < num1 && num3 < num2){
+					smallest = num3;
+					if (num1 < num2){
+						middle = num1;
+						largest = num2;
+					}
+					else{
+						middle = num2;
+						largest = num1;
+					}
+				}
+				else{
+					smallest = num1;
+					middle = num2;
+					largest = num3;
+				}
+
+				// Ends timer
+				var tUgly1 = performance.now();
+
+			}
+			
+			// If user said bubble sort, call Steve's bubble code
+			else if (sortAlgorithm === "bubble") {
+				// Begins timer
+				var tBubble0 = performance.now();
+				[smallest, middle, largest] = sort.prototype.bubble(num1, num2, num3);
+				// Ends timer
+				var tBubble1 = performance.now();
+			}
+
+			// If user said quick sort, call Steve's quick code
+			else if (sortAlgorithm === "quick") {
+				// Begins timer
+				var tQuick0 = performance.now();
+				[smallest, middle, largest] = sort.prototype.quick(num1, num2, num3);
+				// Ends timer
+				var tQuick1 = performance.now();
+			}
+			
+			// If user entered invalid algorithim
+			else {
+				alert("Please enter a valid sort algorithm!");
+			}
+
+			// Outputs the the numbers entered by the user and the numbers sorted
+			document.write("Numbers to sort: " + num1 + ", " + num2 
+										 + ", " + num3 + "<br>");
+			document.write("The sorted numbers are: " + smallest + ", " 
+										 + middle + ", " + largest + "<br>");
+			
+			// Calculated the time it took the sortAlgorithm to sort and outputs it
+			if (sortAlgorithm === "ugly"){
+				document.write("The " + sortAlgorithm + " sort took " 
+											 + (tUgly1 - tUgly0) + " milliseconds.");
+			}
+			else if (sortAlgorithm === "bubble"){
+				document.write("The " + sortAlgorithm + " sort took " 
+											 + (tBubble1 - tBubble0) + " milliseconds.");
+			}
+			else{
+				document.write("The " + sortAlgorithm + " sort took " 
+											 + (tQuick1 - tQuick0) + " milliseconds.");
+			}
+			
+    </script>
+    
+    <noscript>
+      <h1>Turn on JavaScript you Pleb!</h1>
+    </noscript>
+		
+    <br>
+    <!--Creates a refresh button on page-->
+    <input type="button" value="Refresh Page" onClick="window.location.reload()">
+    
+  </body>
+</html>
